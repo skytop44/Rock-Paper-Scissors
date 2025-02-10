@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        
+        console.log("Hello world!")
+        const rps=["Rock","Paper","Scissors"]
+        // score variables
+        let humanScore=0
+        let computerScore=0
+        // computer choice for rock, paper, scissor
+        function getComputerChoice(){
+            return rps[Math.floor(Math.random()*3)]
+            
+        }
+        // human choice for rock, paper, scissor
+        function getHumanChoice(){
+            let sign= prompt("Rock, Paper or Scissors?")
+            return sign
+        }
+        // single round
+        function playRound(humanChoice, computerChoice){
+            if (humanChoice.toLowerCase() == computerChoice.toLowerCase()){
+                console.log("It's a draw!")
+            }
+            else if (humanChoice.toLowerCase() == "rock" && computerChoice.toLowerCase()=="scissors"){
+            console.log("You won! Rock beats Scissors.")
+            humanScore++}
+            else if (humanChoice.toLowerCase() == "paper" && computerChoice.toLowerCase()=="rock"){
+            console.log("You won! Paper beats Rock.")
+            humanScore++}
+            else if (humanChoice.toLowerCase() == "scissors" && computerChoice.toLowerCase()=="paper"){
+            console.log("You won! Scissors beats Paper.")
+            humanScore++}
+
+            else if (computerChoice.toLowerCase() == "rock" && humanChoice.toLowerCase()=="scissors"){
+            console.log("You lose! Rock beats Scissors.")
+            computerScore++}
+            else if (computerChoice.toLowerCase() == "paper" && humanChoice.toLowerCase()=="rock"){
+            console.log("You lose! Paper beats Rock.")
+            computerScore++}
+            else if (computerChoice.toLowerCase() == "scissors" && humanChoice.toLowerCase()=="paper"){
+            console.log("You lose! Scissors beats Paper.")
+            computerScore++}
+            console.log("Computer score:"+computerScore)
+            console.log("Your score:"+humanScore)
+        }
+        // play 5 round
+        function playGame(){
+            for (let i=0;i<5;i++){
+        const humanSelection=getHumanChoice();
+        const computerSelection=getComputerChoice();
+
+        playRound(humanSelection,computerSelection);
+        }
+        }
+        playGame()
+    </script>
+</body>
+</html>
