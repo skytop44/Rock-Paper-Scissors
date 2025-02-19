@@ -6,6 +6,18 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+
+    <div id="yourScore"></div>
+    <div id="enemyScore"></div>
+    <div id="result"></div>
+    <div id="winner"></div>
+
+
+
     <script>
         
         console.log("Hello world!")
@@ -18,39 +30,81 @@
             return rps[Math.floor(Math.random()*3)]
             
         }
-        // human choice for rock, paper, scissor
-        function getHumanChoice(){
-            let sign= prompt("Rock, Paper or Scissors?")
-            return sign
+        // dom massage
+
+        function yourMsg(message){
+            document.getElementById("yourScore").innerText=message;
+
         }
+        function enemyMsg(message){
+            document.getElementById("enemyScore").innerText=message;
+
+        }
+
+        function alertMsg(message){
+            document.getElementById("result").innerText=message;
+
+        }
+        function alertWinner(message){
+            document.getElementById("winner").innerText=message;
+
+        }
+
+
+
         // single round
         function playRound(humanChoice, computerChoice){
             if (humanChoice.toLowerCase() == computerChoice.toLowerCase()){
-                console.log("It's a draw!")
+                alertMsg("It's a draw!")
             }
             else if (humanChoice.toLowerCase() == "rock" && computerChoice.toLowerCase()=="scissors"){
-            console.log("You won! Rock beats Scissors.")
+            alertMsg("You won! Rock beats Scissors.")
             humanScore++}
             else if (humanChoice.toLowerCase() == "paper" && computerChoice.toLowerCase()=="rock"){
-            console.log("You won! Paper beats Rock.")
+            alertMsg("You won! Paper beats Rock.")
             humanScore++}
             else if (humanChoice.toLowerCase() == "scissors" && computerChoice.toLowerCase()=="paper"){
-            console.log("You won! Scissors beats Paper.")
+            alertMsg("You won! Scissors beats Paper.")
             humanScore++}
 
             else if (computerChoice.toLowerCase() == "rock" && humanChoice.toLowerCase()=="scissors"){
-            console.log("You lose! Rock beats Scissors.")
+            alertMsg("You lose! Rock beats Scissors.")
             computerScore++}
             else if (computerChoice.toLowerCase() == "paper" && humanChoice.toLowerCase()=="rock"){
-            console.log("You lose! Paper beats Rock.")
+            alertMsg("You lose! Paper beats Rock.")
             computerScore++}
             else if (computerChoice.toLowerCase() == "scissors" && humanChoice.toLowerCase()=="paper"){
-            console.log("You lose! Scissors beats Paper.")
+            alertMsg("You lose! Scissors beats Paper.")
             computerScore++}
-            console.log("Computer score:"+computerScore)
-            console.log("Your score:"+humanScore)
+            if(computerScore==5){
+                alertWinner("The winner is the Computer!")
+                computerScore=0
+                humanScore=0
+            }
+            else if(humanScore==5){
+                alertWinner("You are the winner!")
+                computerScore=0
+                humanScore=0
+            }
+
+
+            enemyMsg("Computer score:"+computerScore)
+            yourMsg("Your score:"+humanScore)
         }
-        // play 5 round
+
+
+        
+            document.addEventListener("DOMContentLoaded",()=>{
+            document.getElementById("rock").addEventListener('click',()=>playRound("Rock",getComputerChoice()));
+            document.getElementById("paper").addEventListener('click',()=>playRound("Paper",getComputerChoice()));
+            document.getElementById("scissors").addEventListener('click',()=>playRound("Scissors",getComputerChoice()));
+
+        })
+
+    
+    
+        
+        /* play 5 round
         function playGame(){
             for (let i=0;i<5;i++){
         const humanSelection=getHumanChoice();
@@ -59,7 +113,7 @@
         playRound(humanSelection,computerSelection);
         }
         }
-        playGame()
+        playGame() */
     </script>
 </body>
 </html>
